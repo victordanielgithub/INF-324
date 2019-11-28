@@ -1,0 +1,56 @@
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+        Formulario Acta Recepcion del Producto
+        <small>Nuevo</small>
+        </h1>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <!-- Default box -->
+        <div class="box box-solid">
+            <div class="box-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <?php if($this->session->flashdata("error")):?>
+                            <div class="alert alert-danger alert-dismissible">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                <p><i class="icon fa fa-ban"></i><?php echo $this->session->flashdata("error");?></p>                                
+                             </div>
+                        <?php endif;?>
+
+                        <form action="<?php echo base_url();?>formularios/guardar_acta_recepcion_prod" method="POST">
+                            <div class="form-group">
+                                <label for="fecha">fecha:</label>
+                                 <input type="date" name="fecha" step="1" min="2019-01-01" max="2021-12-31" value="<?php echo date("Y-m-d");?>">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="unidad">Unidad:</label>
+                                 <input type="text" name="unidad" value="ANAPOL" readonly="readonly">
+                            </div>
+                         <div class="form-group">
+                                <label for="id_fp">Fecha Pedido:</label>
+                                <select name="id_fp" id="id_fp" class="form-control">
+                                    <?php foreach($pedidos as $pedido):?>
+                                        <option value="<?php echo $pedido->id_fp?>"><?php echo $pedido->fecha;?></option>
+                                    <?php endforeach;?>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-success btn-flat">Guardar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- /.box-body -->
+        </div>
+        <!-- /.box -->
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
